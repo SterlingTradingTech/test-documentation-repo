@@ -19,7 +19,7 @@ jobs:
 
     # Step 2: Set up jq
     - name: Install jq
-      run: snap install jq
+      run: apt install -y jq
 
     # Step 3: Find and sort JSON files
     - name: Sort JSON files
