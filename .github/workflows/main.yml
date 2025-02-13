@@ -10,7 +10,7 @@ jobs:
   sort-json:
     runs-on: self-hosted
     container:
-      image: ubuntu:20.04
+      image: ubuntu:24.04
 
     steps:
     # Step 1: Check out the repository
@@ -19,7 +19,7 @@ jobs:
 
     # Step 2: Set up jq
     - name: Install jq
-      run: apt-get install -y jq
+      run: snap install jq
 
     # Step 3: Find and sort JSON files
     - name: Sort JSON files
