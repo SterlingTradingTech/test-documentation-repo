@@ -10,7 +10,7 @@ jobs:
   sort-json:
     runs-on: self-hosted
     container:
-      image: ubuntu:24.04
+      image: alpine:latest
 
     steps:
     # Step 1: Check out the repository
@@ -19,7 +19,7 @@ jobs:
 
     # Step 2: Set up jq
     - name: Install jq
-      run: apt install -y jq
+      run: apk add --no-cache jq git
 
     # Step 3: Find and sort JSON files
     - name: Sort JSON files
