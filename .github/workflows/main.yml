@@ -9,6 +9,8 @@ on:
 jobs:
   sort-json:
     runs-on: self-hosted
+    container:
+      image: ubuntu:20.04
 
     steps:
     # Step 1: Check out the repository
