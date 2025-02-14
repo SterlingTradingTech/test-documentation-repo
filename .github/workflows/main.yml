@@ -31,11 +31,15 @@ jobs:
 
     # Step 4: Commit changes if any
     - name: Commit changes
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         if [ -n "$(git status --porcelain)" ]; then
           git add .
           git commit -m "Sort JSON files with jq"
-          git push
+          git push origin HEAD
+        else
+          echo "No change to commit."
         fi
