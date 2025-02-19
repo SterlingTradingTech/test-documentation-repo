@@ -18,9 +18,11 @@ jobs:
     - name: Test Changes
       run: |
         if CHANGES ; then
-          CHANGES=""
+          echo "Currently ${{ env.CHANGES }} Change to empty"
+          env.CHANGES=""
         else
-          CHANGES=1
+          echo "Currently ${{ env.CHANGES }} Change to 1"
+          env.CHANGES=1
         fi
 
     - name: Run if Changes
