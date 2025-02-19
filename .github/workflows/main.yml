@@ -12,7 +12,7 @@ jobs:
     container:
       image: alpine:latest
     env:
-      CHANGES: ""
+      CHANGES: 1
 
     steps:
     - name: Test Changes
@@ -26,4 +26,4 @@ jobs:
     - name: Run if Changes
       if: env.CHANGES
       run: |
-        echo "Running!"
+        echo "$CHANGES vs ${{ env.CHANGES }} Running!"
