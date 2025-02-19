@@ -12,7 +12,7 @@ jobs:
     container:
       image: alpine:latest
     env:
-      CHANGES: 1
+      CHANGES: ""
 
     steps:
     - name: Test Changes
