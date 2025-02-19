@@ -17,7 +17,7 @@ jobs:
     steps:
     - name: Test Changes
       run: |
-        if ${{ env.CHANGES }} ; then
+        if [ ${{ env.CHANGES }} ] ; then
           echo "Currently ${{ env.CHANGES }} Change to empty"
           echo "CHANGES=" >> "$GITHUB_ENV"
         else
