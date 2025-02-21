@@ -15,17 +15,30 @@ jobs:
       CHANGES: ""
 
     steps:
-    - name: Test Changes
+    - name: Sort JSON files
       run: |
-        if [ ${{ env.CHANGES }} ] ; then
-          echo "Currently ${{ env.CHANGES }} Change to empty"
-          echo "CHANGES=" >> "$GITHUB_ENV"
-        else
-          echo "Currently ${{ env.CHANGES }} Change to 1"
-          echo "CHANGES=1" >> "$GITHUB_ENV"
-        fi
+        for file in $(find . -name "*.json"); do
+          jq -S . "$file" > "$file.dftmp"
+          if ! diff "$file" "$file.dftmp" > /dev/null; then
+            mv "$file.dftmp" "$file"
+            echo "CHANGES=true" >> "$GITHUB_ENV"
+          else
+            rm "$file.dftmp"
+          fi
+        done
 
-    - name: Run if Changes
+    - name: Commit Sorted JSON file changes
       if: env.CHANGES
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
-        echo "$CHANGES vs ${{ env.CHANGES }} Running!"
+        git config --global --add safe.directory /__w/ReadMe.io/ReadMe.io
+        if [ -n "$(git status --porcelain)" ]; then
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Sort JSON files $(date +%F)"
+          git push origin HEAD
+        else
+          echo "No sorting changes to commit."
+        fi
