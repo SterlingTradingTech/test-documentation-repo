@@ -23,10 +23,10 @@ jobs:
           jq -S . "$file" > "$file.dftmp"
           if ! diff "$file" "$file.dftmp" > /dev/null; then
             mv "$file.dftmp" "$file"
-            echo "CHANGES"
+            echo "CHANGES $file"
             echo "CHANGES=true" >> "$GITHUB_ENV"
           else
-            echo "no changes"
+            echo "no changes $file"
             rm "$file.dftmp"
           fi
         done
