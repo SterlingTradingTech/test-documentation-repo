@@ -21,7 +21,7 @@ jobs:
       run: |
         for file in $(find . -name "*.json"); do
           jq -S . "$file" > "$file.dftmp"
-          if ! diff "$file" "$file.dftmp" > /dev/null; then
+          if ! diff "$file" "$file.dftmp"; then
             mv "$file.dftmp" "$file"
             echo "CHANGES $file"
             echo "CHANGES=true" >> "$GITHUB_ENV"
