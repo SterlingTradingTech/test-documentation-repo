@@ -17,6 +17,8 @@ jobs:
     steps:
     - name: Install jq and git
       run: apk add --no-cache jq git
+    - name: Checkout repository
+      uses: actions/checkout@v3
     - name: Sort JSON files
       run: |
         for file in $(find . -name "*.json"); do
