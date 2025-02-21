@@ -41,7 +41,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         env
-        git config --global --add safe.directory $GITHUB_PATH
+        echo "git config --global --add safe.directory $GITHUB_PATH VS"
+        echo "git config --global --add safe.directory /__w/test-documentation-repo/test-documentation-repo"
+        git config --global --add safe.directory /__w/test-documentation-repo/test-documentation-repo
         git status --porcelain
         if [ -n "$(git status --porcelain)" ]; then
           git config --global user.name "github-actions[bot]"
