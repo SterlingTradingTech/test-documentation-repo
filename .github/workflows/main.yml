@@ -40,8 +40,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
-        echo "add safe directory $GITHUB_REPOSITORY"
-        git config --global --add safe.directory /__w/"$GITHUB_REPOSITORY"
+        env
+        git config --global --add safe.directory /__w/test-documentation-repo/test-documentation-repo
         if [ -n "$(git status --porcelain)" ]; then
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
