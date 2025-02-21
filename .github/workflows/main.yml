@@ -41,11 +41,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         env
-        echo "git config --global --add safe.directory $GITHUB_WORKSPACE VS"
-        echo "git config --global --add safe.directory /__w/test-documentation-repo/test-documentation-repo"
         git config --global --add safe.directory $GITHUB_WORKSPACE
         git status --porcelain
         if [ -n "$(git status --porcelain)" ]; then
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -m "Sort JSON files $(date +%F)"
           git push origin HEAD
