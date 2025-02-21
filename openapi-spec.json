@@ -1,14 +1,14 @@
 {
-  "zzzz": {
-    "yyy": 1,
-    "zzz": 2,
-    "xxx": 3
-  },
   "aaaa": "42",
   "bbbb": {
     "aaa": "2",
     "bbb": "3",
     "ccc": "1"
   },
-  "c": "ccc"
+  "c": "ccc",
+  "zzzz": {
+    "xxx": 3,
+    "yyy": 1,
+    "zzz": 2
+  }
 }
