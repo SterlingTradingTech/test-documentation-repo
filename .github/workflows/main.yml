@@ -12,8 +12,9 @@ jobs:
     container:
       image: alpine:latest
     env:
-      CHANGES: ""
-
+      CHANGES: ""        
+    permissions:
+        contents: write
     steps:
     - name: Install jq and git
       run: apk add --no-cache jq git
