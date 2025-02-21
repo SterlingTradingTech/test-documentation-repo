@@ -27,6 +27,8 @@ jobs:
             echo "CHANGES=true" >> "$GITHUB_ENV"
           else
             echo "no changes $file"
+            cat $file
+            cat $file.dftmp
             rm "$file.dftmp"
           fi
         done
